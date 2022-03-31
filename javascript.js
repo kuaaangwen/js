@@ -869,7 +869,7 @@ function progressTracker(){
   progressDisplayContainer.style.display = "none"
   progressButton.innerText = "Get Progress"
 
-  var reset_boolean = window.confirm('Are you sure you want to initialise/reset your progess?\nThis process cannot be undone.')
+  var reset_boolean = window.confirm('Are you sure you want to reset your progess?\nThis process cannot be undone.')
 
   if (reset_boolean == true){
     //Initialise an array of zeros
