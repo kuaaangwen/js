@@ -101,6 +101,10 @@ function getChapterProgress(progress, mastery){ //Insert student progress as var
     }
 
   // Finally, convert the array into rows (with line break, and bold the keyword); use join""
+  
+  if (parseInt(mastery) >= 50){
+    htmlArray.push(`<p><a href="${downloadLink}">Congratulations on reaching your 50% milestone! Please click on this link to claim your algorithms book!</a></p>`)
+  }
 
   var htmlProgress = htmlArray.join("")
 
