@@ -102,16 +102,16 @@ function getChapterProgress(progress, mastery){ //Insert student progress as var
 
   // Finally, convert the array into rows (with line break, and bold the keyword); use join""
 
-  console.log(parseInt(mastery))
+//   console.log(parseInt(mastery))
   
   if (parseInt(mastery) >= 50){
-    console.log("true")
+//     console.log("true")
     htmlArray.push(`<p><a href="${downloadLink}" target="_blank">Congratulations on reaching your 50% milestone! Please click on this link to claim your algorithms book!</a></p>`)
   }else{
-    console.log("false")
+//     console.log("false")
   }
   
-  console.log(htmlArray)
+//   console.log(htmlArray)
 
   var htmlProgress = htmlArray.join("")
 
