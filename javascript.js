@@ -104,12 +104,14 @@ function getChapterProgress(progress, mastery){ //Insert student progress as var
 
   console.log(parseInt(mastery))
   
-  if (parseInt(mastery) >= 1){
+  if (parseInt(mastery) >= 0){
     console.log("true")
     htmlArray.push(`<p><a href="${downloadLink}" target="_blank>Congratulations on reaching your 50% milestone! Please click on this link to claim your algorithms book!</a></p>`)
   }else{
     console.log("false")
   }
+  
+  console.log(htmlArray)
 
   var htmlProgress = htmlArray.join("")
 
