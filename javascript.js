@@ -44,14 +44,14 @@ function getChapterProgress(progress, mastery){ //Insert student progress as var
   // Create an empty list (use at the end)
    var htmlArray = [`<h2 style="padding: 5px"><strong>Mastery: ${mastery}%</strong></h2>`];
 
-   // console.log(htmlArray)
+   // // console.log(htmlArray)
 
   // Loop through chapter list
     for (var idx in chapterList){
 
       var chapter = chapterList[idx]
 
-      // console.log(chapterList[idx])
+      // // console.log(chapterList[idx])
 
     // Start the count of questions
       var qn_count = 0 ;
@@ -86,21 +86,23 @@ function getChapterProgress(progress, mastery){ //Insert student progress as var
 
       }
 
-      console.log(chapter + " " + qn_count)
+      // console.log(chapter + " " + qn_count)
 
-      console.log("correct: " + correct_count)
+      // console.log("correct: " + correct_count)
 
       // push html into string
 
       var html = `<p><strong>${chapter}:</strong> ${correct_count}/${qn_count} correct</p>`
 
-      console.log(html)
+      // console.log(html)
 
       htmlArray.push(html)
 
     }
 
   // Finally, convert the array into rows (with line break, and bold the keyword); use join""
+
+  console.log(mastery)
   
   if (parseInt(mastery) >= 50){
     htmlArray.push(`<p><a href="${downloadLink}" target="_blank>Congratulations on reaching your 50% milestone! Please click on this link to claim your algorithms book!</a></p>`)
@@ -140,7 +142,7 @@ function buildQuiz() {
 
   var studentProgress = JSON.parse(window.localStorage.getItem('progress'))
   
-  console.log(studentProgress)
+  // console.log(studentProgress)
 
   //Check if "All" selected
   var checkboxes = document.getElementById("All");
@@ -188,13 +190,13 @@ function buildQuiz() {
     var numberOfCorrectIndexes = Math.round(numberOfQuestions.value * 0.2)
     var numberOfIncorrectIndexes = numberOfQuestions.value - numberOfCorrectIndexes
 
-    // console.log(numberOfIncorrectIndexes)
-    // console.log(numberOfCorrectIndexes)
+    // // console.log(numberOfIncorrectIndexes)
+    // // console.log(numberOfCorrectIndexes)
 
       // Case 1 - too little 1's
       if(correctIndex.length < numberOfCorrectIndexes){
 
-        console.log("Not enough correct answers")
+        // console.log("Not enough correct answers")
 
       // Append correct questions first
         for(var correctIdx = 0; correctIdx < correctIndex.length; correctIdx++){
@@ -204,7 +206,7 @@ function buildQuiz() {
         }
 
         var numberOfIncorrect = numberOfQuestions.value - correctIndex.length
-        console.log(numberOfIncorrect)
+        // console.log(numberOfIncorrect)
 
       // Append incorrect questions
         for(var incorrectIdx = 0; incorrectIdx < numberOfIncorrect; incorrectIdx++){
@@ -220,7 +222,7 @@ function buildQuiz() {
       // Case 2 - too little 0's
       else if(correctIndex.length < numberOfCorrectIndexes){
 
-        console.log("Not enough correct answers")
+        // console.log("Not enough correct answers")
 
       // Append incorrect questions first
         for(var incorrectIdx = 0; incorrectIdx < incorrectIndex.length; incorrectIdx++){
@@ -230,7 +232,7 @@ function buildQuiz() {
         }
 
         var numberOfCorrect = numberOfQuestions.value - incorrectIndex.length
-        console.log(numberOfIncorrect)
+        // console.log(numberOfIncorrect)
 
       // Append correct questions
         for(var correctIdx = 0; correctIdx < numberOfCorrect; correctIdx++){
@@ -246,11 +248,11 @@ function buildQuiz() {
       // Normal case - 80/20%
       else{
 
-        console.log("This is a normal case")
-        console.log("Correct Index:")
-        console.log(correctIndex)
-        console.log("Incorrect Index:")
-        console.log(incorrectIndex)
+        // console.log("This is a normal case")
+        // console.log("Correct Index:")
+        // console.log(correctIndex)
+        // console.log("Incorrect Index:")
+        // console.log(incorrectIndex)
 
         // Append incorrect answers
 
@@ -274,7 +276,7 @@ function buildQuiz() {
 
     questionIndexes = questionIndexes.sort(() => Math.random() - 0.5)
 
-    console.log("Question Indexes: " + questionIndexes)
+    // console.log("Question Indexes: " + questionIndexes)
 
 // Populate myQuestions Array
 
@@ -284,17 +286,17 @@ function buildQuiz() {
 
     var question_index = questionIndexes[q_idx]
 
-    // console.log(question_index)
+    // // console.log(question_index)
 
     myQuestions.push(questionBank[question_index])
 
   }
 
-// console.log(myQuestions)
+// // console.log(myQuestions)
 
 // Store questions in session storage then take it out later (or can store indexes)
 
-console.log("Storing questions in session storage...")
+// console.log("Storing questions in session storage...")
 
 window.sessionStorage.setItem('questions', JSON.stringify(myQuestions))
 
@@ -306,7 +308,7 @@ window.sessionStorage.setItem('questions', JSON.stringify(myQuestions))
       checkboxes = document.getElementById(fullChapterSet[chapters]);
       boxChecked = checkboxes.checked ? true : false;
 
-      //console.log(checkboxes)
+      //// console.log(checkboxes)
 
       if (boxChecked == true) {
         chapterChoices.push(fullChapterSet[chapters]);
@@ -323,7 +325,7 @@ window.sessionStorage.setItem('questions', JSON.stringify(myQuestions))
     return    
   }
 
-  //console.log(chapterChoices);
+  //// console.log(chapterChoices);
 
   //filter by chapter
   var myQuestions = [];
@@ -343,7 +345,7 @@ window.sessionStorage.setItem('questions', JSON.stringify(myQuestions))
     }
   }
 
-  console.log(chosenTopicsQuestions)
+  // console.log(chosenTopicsQuestions)
 
 
   //If number of questions in chosen topics < chosen number, choose max number of questions
@@ -353,8 +355,8 @@ window.sessionStorage.setItem('questions', JSON.stringify(myQuestions))
 
 
   //Log chapters into console
-  //console.log(myQuestions);
-  //console.log(chapterChoices.length);
+  //// console.log(myQuestions);
+  //// console.log(chapterChoices.length);
 
   //Set maximum to 50
   if (numberOfQuestions.value > 50) {
@@ -386,7 +388,7 @@ for (var z = 0; z < chosenTopicsQuestions.length; z++){
   // Get the state of the question (correct or incorrect/unattempted)
   var state = studentProgress[index]
 
-  // console.log("State of question " + index + ": " + state)
+  // // console.log("State of question " + index + ": " + state)
 
   // Compare the number of incorrect to the number of states 0
   if (state == 0){
@@ -405,24 +407,24 @@ for (var z = 0; z < chosenTopicsQuestions.length; z++){
 zero_index_array.sort(() => Math.random() - 0.5);
 one_index_array.sort(() => Math.random() - 0.5);
 
-// console.log("Number of 0 states: " + zeroes)
-// console.log("Number of 1 states: " + ones)
-// console.log("Zero array: " + zero_index_array)
-// console.log("One array: " + one_index_array)
+// // console.log("Number of 0 states: " + zeroes)
+// // console.log("Number of 1 states: " + ones)
+// // console.log("Zero array: " + zero_index_array)
+// // console.log("One array: " + one_index_array)
 
 // Get the number of correct and incorrect questions to pull out
 
 var numberOfCorrectIndexes = Math.round(numberOfQuestions.value * 0.2)
 var numberOfIncorrectIndexes = numberOfQuestions.value - numberOfCorrectIndexes
 
-console.log(numberOfCorrectIndexes)
-console.log(numberOfIncorrectIndexes)
+// console.log(numberOfCorrectIndexes)
+// console.log(numberOfIncorrectIndexes)
 
 // Case 1 - Too little zeros
 
 if (zeroes < numberOfIncorrectIndexes){
 
-console.log("Too little zeroes")
+// console.log("Too little zeroes")
 
 // Add all the zeros in first
 
@@ -432,20 +434,20 @@ for (var zero in zero_index_array){
 
 }
 
-console.log(myQuestions)
+// console.log(myQuestions)
 
 // Find the number of ones that I will need to add in
 
   var number_of_ones = numberOfQuestions.value - zeroes
 
-  // console.log(number_of_ones)
+  // // console.log(number_of_ones)
 
   // Add in the rest of the ones
   for(var one_index = 0; one_index < number_of_ones; one_index++){
 
     var aa = one_index_array[one_index]
     
-    console.log("qn_ID: " + aa)
+    // console.log("qn_ID: " + aa)
 
     var ab = questionBank[aa]
 
@@ -459,7 +461,7 @@ console.log(myQuestions)
 
 else if (ones < numberOfCorrectIndexes){
 
-  console.log("Too little ones")
+  // console.log("Too little ones")
 
   // Add all the ones in first
 
@@ -472,14 +474,14 @@ else if (ones < numberOfCorrectIndexes){
   // Find the number of zeros that I will need to add in
   var number_of_zeroes = numberOfQuestions.value - ones
 
-  // console.log(number_of_zeroes)
+  // // console.log(number_of_zeroes)
 
   // Add in the rest of the zeroes
   for(var zero_index = 0; zero_index < number_of_zeroes; zero_index++){
 
     var aa = zero_index_array[zero_index]
     
-    console.log("qn_ID: " + aa)
+    // console.log("qn_ID: " + aa)
 
     var ab = questionBank[aa]
 
@@ -494,7 +496,7 @@ else if (ones < numberOfCorrectIndexes){
 
 else{
 
-  console.log("This is a normal case")
+  // console.log("This is a normal case")
 
   // Add in ones first
 
@@ -526,11 +528,11 @@ else{
 
   myQuestions.sort(() => Math.random() - 0.5);
 
-  // console.log(myQuestions)
+  // // console.log(myQuestions)
 
 // Store questions in session storage then take it out later (or can store indexes)
 
-console.log("Storing questions in session storage...")
+// console.log("Storing questions in session storage...")
 
 window.sessionStorage.setItem('questions', JSON.stringify(myQuestions))
 
@@ -551,7 +553,7 @@ window.sessionStorage.setItem('questions', JSON.stringify(myQuestions))
 
     // and for each available answer...
     for (var letter in myQuestions[i].answers) {
-      //console.log(myQuestions[i].type.value);
+      //// console.log(myQuestions[i].type.value);
 
       if (myQuestions[i].type === "choice") {
         // ...add an HTML radio button
@@ -610,7 +612,7 @@ window.sessionStorage.setItem('questions', JSON.stringify(myQuestions))
 
 function showResults() {
   
-  console.log("Attempt " + attemptNo)
+  // console.log("Attempt " + attemptNo)
   
   // Hide the progress display
   progressDisplayContainer.style.display = "none"
@@ -618,11 +620,11 @@ function showResults() {
 
   // Get student progress and questions array
 
-  console.log("Pulling student progress")
+  // console.log("Pulling student progress")
 
   var studentProgress = JSON.parse(window.localStorage.getItem('progress'))
 
-  console.log("Pulling questions from session storage...")
+  // console.log("Pulling questions from session storage...")
   
   var myQuestions = JSON.parse(window.sessionStorage.getItem('questions'))
 
@@ -642,9 +644,9 @@ function showResults() {
       const selector = `input[name=question${j}]:checked`;
       const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
-      console.log(answerContainer);
-      console.log(userAnswer);
-      console.log(myQuestions[j].correctAnswer);
+      // console.log(answerContainer);
+      // console.log(userAnswer);
+      // console.log(myQuestions[j].correctAnswer);
 
       // if answer is correct
       if (userAnswer === myQuestions[j].correctAnswer) {
@@ -701,17 +703,17 @@ function showResults() {
       var optionC = myQuestions[j].correctAnswer["C"];
       var optionD = myQuestions[j].correctAnswer["D"];
 
-      //console.log("Options");
-      //console.log(optionA);
-      //console.log(optionB);
-      //console.log(optionC);
-      //console.log(optionD);
+      //// console.log("Options");
+      //// console.log(optionA);
+      //// console.log(optionB);
+      //// console.log(optionC);
+      //// console.log(optionD);
 
-      //console.log("Choices");
-      //console.log(userAnswerA);
-      //console.log(userAnswerB);
-      //console.log(userAnswerC);
-      //console.log(userAnswerD);
+      //// console.log("Choices");
+      //// console.log(userAnswerA);
+      //// console.log(userAnswerB);
+      //// console.log(userAnswerC);
+      //// console.log(userAnswerD);
 
       // if answer is correct
       if (optionA == userAnswerA) {
@@ -821,7 +823,7 @@ function showResults() {
 // Show the results box
 resultsContainer.style.display = "block";
 
-console.log(studentProgress)
+// console.log(studentProgress)
 
 // Store new student progress array in storage 
 
@@ -889,7 +891,7 @@ function progressTracker(){
 
       window.localStorage.setItem('progress', JSON.stringify(newProgress));
       var item = window.localStorage.getItem('progress')
-      console.log("Individual Progress: " + JSON.parse(item))
+      // console.log("Individual Progress: " + JSON.parse(item))
 
       alert("Progress reset! All the best!")
   }
@@ -918,7 +920,7 @@ function getProgress(){
 
   var mastery = (ones/item.length * 100).toFixed(1)
 
-  console.log("Number of correct answers: " + ones)
+  // console.log("Number of correct answers: " + ones)
 
   // Show the progressDisplayContainer
 
@@ -1171,11 +1173,11 @@ var questionBank = [
 
 //////////////// Calculations ///////////////////
 
-console.log("Number of questions: " + questionBank.length)
+// console.log("Number of questions: " + questionBank.length)
 
 var fullQuestionIndexArray = Array.from(Array(questionBank.length).keys())
 
-// console.log(fullQuestionIndexArray)
+// // console.log(fullQuestionIndexArray)
 
 // Get the student's progress
 
@@ -1183,7 +1185,7 @@ var studentProgress = JSON.parse(window.localStorage.getItem('progress'))
 
 if(studentProgress != null){
 
-console.log("Student Progress: " + studentProgress)
+// console.log("Student Progress: " + studentProgress)
 
 // Initialise a blank array for correct and incorrect progress
   var correctIndex = []
@@ -1193,7 +1195,7 @@ for (var index = 0; index < questionBank.length; index++){
 
   if (studentProgress[index] == 0){
 
-    // console.log(index + ": " + studentProgress[index])
+    // // console.log(index + ": " + studentProgress[index])
 
     incorrectIndex.push(index);
 
@@ -1209,8 +1211,8 @@ for (var index = 0; index < questionBank.length; index++){
 // incorrectIndex = incorrectIndex.sort(() => Math.random() - 0.5);
 // correctIndex = correctIndex.sort(() => Math.random() - 0.5);
 
-// console.log("Shuffled incorrect index:\n" + incorrectIndex)
-// console.log("Shuffled correct index:\n" + correctIndex)
+// // console.log("Shuffled incorrect index:\n" + incorrectIndex)
+// // console.log("Shuffled correct index:\n" + correctIndex)
 
 ////////////////////////////////////////////////
 
@@ -1237,11 +1239,11 @@ window.scrollTo(0,0)
 
       window.localStorage.setItem('progress', JSON.stringify(newProgress));
       var item = window.localStorage.getItem('progress')
-      console.log("Individual Progress: " + JSON.parse(item))
+      // console.log("Individual Progress: " + JSON.parse(item))
   
       refreshPage()
   
-  // console.log(studentProgress)
+  // // console.log(studentProgress)
   
   alert("Welcome! Please read the instructions before starting")
   
@@ -1251,4 +1253,4 @@ window.scrollTo(0,0)
 // // Clear all local storage (for testing)
 // window.localStorage.clear()
 
-// console.log(studentProgress)
+// // console.log(studentProgress)
